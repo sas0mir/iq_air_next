@@ -1,0 +1,74 @@
+{
+    "data_providers": {
+      "default": {
+        "log": false,
+        "connectConfig": {
+          "host": "172.16.0.68",
+          "port": 11610,
+          "database": "covid19",
+          "user": "nfadm",
+          "password": "npfiaddomr"
+        },
+        "main": {
+          "dialect": "postgres",
+          "timezone": "+03:00",
+          "dialectOptions_": {
+            "requestTimeout": 3000,
+            "idle_in_transaction_session_timeout": 60000,
+            "statement_timeout": 5000
+          },
+          "pool": {
+            "max": 50,
+            "min": 0,
+            "idle": 10000,
+            "acquire": 60000
+          },
+          "retry": {
+            "max": 3
+          }
+        },
+        "define": {
+          "timestamps": true,
+          "underscored": true,
+          "schema": "eco"
+        }
+      }
+    },
+  
+    "api": {
+      "url": "https://api.airvisual.com/v2/",
+      "key": "037cd413-b1ed-41dd-a0cc-a32d692efc33",
+      "delay_ms": 13000,
+      "services": {
+        "country": {
+          "api": "countries"
+        },
+        "state": {
+          "api": "states",
+          "countries": [
+            "Russia"
+          ]
+        },
+        "city": {
+          "api": "cities"
+        },
+        "data": {
+          "api": "city"
+        }
+      },
+      "custom_load": [
+        {
+          "country": "India",
+          "state":"Maharashtra",
+          "city":"Mumbai"
+        },
+        {
+          "country": "China",
+          "state":"Beijing",
+          "city":"Beijing"
+        }
+      ]
+  
+    }
+  }
+  
