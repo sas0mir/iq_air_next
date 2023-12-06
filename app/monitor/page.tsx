@@ -28,8 +28,8 @@ function Monitor(props: any) {
   }
 
   return (
-    <main className={styles.explorer_container}>
-        <header className={styles.explorer_header}>
+    <main className={styles.monitor_container}>
+        <header className={styles.monitor_header}>
           <BreadCrumbs path={location} action={(folder: string) => {
             getData(`/${folder}`);
             setLocation(`/${folder}`);

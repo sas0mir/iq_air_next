@@ -6,7 +6,7 @@ import { get } from "lodash";
 export async function GET(request: NextApiRequest, response: NextApiResponse) {
 
     //const reqQuery = url.parse(request.url as string, true).query;
-    //process.env.API_KEY
+    console.log('REQ->', request);
     try {
         const states = await fetch(`${process.env.API_URL}states?key=${process.env.API_KEY}`);
         const data = await states.json();
