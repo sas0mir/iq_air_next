@@ -100,7 +100,7 @@
     margin: 20;
 }
 
-/* HOME HEADER */
+/* HOME PAGE */
 .header_container {
     position: relative;
     display: flex;
@@ -116,6 +116,13 @@
     color: white;
     padding: 10px;
     font-weight: 600;
+}
+.home_content_row {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 1em;
 }
 
 
@@ -143,6 +150,7 @@
     width: -webkit-max-content;
     width: -moz-max-content;
     width: max-content;
+    background-color: white;
 }
 .select_custom__dropdown_container .select_dropdown_input {
     padding: 7px 11px;

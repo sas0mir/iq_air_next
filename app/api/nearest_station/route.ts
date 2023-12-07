@@ -5,10 +5,12 @@ import { get } from "lodash";
 
 export async function POST(request: NextRequest, response: NextApiResponse) {
 
-    //const reqQuery = url.parse(request.url as string, true).query;
+    //ip address nearest station x-forwarded-for
     const req = await request.json();
+    const lat = req.latitude;
+    const lon = req.longitude;
     try {
-        const states = await fetch(`${process.env.API_URL}states?country=${req.country}&key=${process.env.API_KEY}`);
+        const states = await fetch(`${process.env.API_URL}nearest_station?${lat ? `lat=${lat}&lon=${lon}&` : ''}key=${process.env.API_KEY}`);
         const data = await states.json();
         if(data.status === 'success') {
             return NextResponse.json(data)
