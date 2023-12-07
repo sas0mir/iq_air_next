@@ -2,7 +2,7 @@ export type ILocation = {
     country?: string,
     state?: string,
     city?: string,
-    type?: string,
+    station?: string,
     coordinates?: any[]
 }
 

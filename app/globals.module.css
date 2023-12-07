@@ -117,12 +117,27 @@
     padding: 10px;
     font-weight: 600;
 }
+.home_content {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    padding: 1em;
+}
+.home_content_column {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    background-color: white;
+}
 .home_content_row {
     position: relative;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     padding: 1em;
+    background-color: white;
+    margin: 0 1em;
 }
 
 
