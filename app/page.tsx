@@ -9,6 +9,8 @@ import { useEffect, useState } from "react";
 import Select from "./lib/select";
 import { get } from "lodash";
 import { ILocation } from "./lib/constants";
+import LocationHeader from "./lib/location_header";
+import IndexVidget from "./lib/index_vidget";
 
 export default function Page({Component, pageProps}:AppProps) {
 
@@ -25,6 +27,7 @@ export default function Page({Component, pageProps}:AppProps) {
 
     useEffect(() => {
         if (!countries.length) getData('countries');
+        if (!location.city) findMe()
     }, [])
 
     useEffect(() => {
@@ -82,7 +85,13 @@ export default function Page({Component, pageProps}:AppProps) {
 
     const findMe = async () => {
       try {
-        await fetch(`/api/nearest_station`, {method: 'POST'}).then((res) => {
+        await fetch(`/api/nearest_city`, {
+          method: 'POST',
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({coordinates: location.coordinates})
+        }).then((res) => {
           return res.json()
         }).then((data) => {
           if(data.status === 'success') {
@@ -106,25 +115,25 @@ export default function Page({Component, pageProps}:AppProps) {
     }
 
     const handleSelectCountry = (value: any) => {
-      console.log('SELECT-HANDLE->', value);
       setLocation({country: value.country});
       setStates([]);
       setCities([])
     }
     const handleSelectState = (value: any) => {
-      console.log('SELECT-HANDLE->', value);
       setLocation({country: location.country, state: value.state})
       setCities([])
     }
     const handleSelectCity = (value: any) => {
-      console.log('SELECT-HANDLE->', value);
       setLocation({country: location.country, state: location.state, city: value.city})
+    }
+    const handleBreadRoute = (newLocation: string[]) => {
+      alert(`ROUTE-> ${newLocation}`)
     }
 
     return (
         <main className={styles.main}>
           <header className={styles.header_container}>
-            <BreadCrumbs path={`${location.country}/${location.state || 'Не выбран штат'}/${location.city || 'Не выбран город'}`}/>
+            <BreadCrumbs path={`${location.country}/${location.state || 'Не выбран штат'}/${location.city || 'Не выбран город'}`} action={handleBreadRoute}/>
             <input type="button" value="Найти меня" onClick={findMe} className={styles.header_btn} />
           </header>
           <div className={styles.home_content_row}>
@@ -133,16 +142,16 @@ export default function Page({Component, pageProps}:AppProps) {
             <Select options={cities} placeHolder={location.city || 'Выбор города'} onChange={handleSelectCity} optionName="city"/>
             <Select options={cities} placeHolder={location.station || 'Выбор станции'} onChange={handleSelectCity} optionName="station"/>
           </div>
-          <div className={styles.home_content}>
-            <div className={styles.home_content_column}>
-              <h2 className={styles.home_content_title}>Качество воздуха в мире</h2>
-              <h3 className={styles.home_content_title}>Индекс качества воздуха (AQI) и загрязнение атмосферы PM2.5 в мире</h3>
-              <h4 className={styles.home_content_title}>Последнее обновление: 02:02, дек. 8</h4>
-            </div>
+          <div className={styles.home_content_head}>
+            <LocationHeader location={location} weather={weather} pollution={pollution} />
           </div>
           <div className={styles.home_content}>
-            <div className={styles.home_content_column}></div>
-            <div className={styles.home_content_column}></div>
+            <div className={styles.home_content_column_left}>
+              <h2>LEFT BANNER</h2>
+            </div>
+            <div className={styles.home_content_column_right}>
+              <IndexVidget location={location} weather={weather} pollution={pollution} />
+            </div>
           </div>
             {/* {session?.user ? 
             <Link href="/monitor">Back to weather monitor {session?.user.name}</Link> : 

@@ -8,9 +8,19 @@
     min-height: 100vh;
 }
 /* COMPONENTS */
-.select {
-    background-color: aquamarine;
-
+.icon_btn {
+    background-color: white;
+    border-radius: 50%;
+    align-items: center;
+    align-content: center;
+    min-width: 30px;
+    min-height: 30px;
+    cursor: pointer;
+    margin-left: 1em;
+}
+.icon_btn:hover {
+    border-color: grey;
+    color: grey;
 }
 
 /* AUTH */
@@ -122,6 +132,7 @@
     display: flex;
     flex-direction: row;
     padding: 1em;
+    padding-top: 0;
 }
 .home_content_column {
     position: relative;
@@ -129,6 +140,23 @@
     flex-direction: column;
     padding: 1em;
     background-color: white;
+}
+.home_content_column_left {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    background-color: white;
+    width: 30%;
+    margin-right: 1em;
+}
+.home_content_column_right {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    background-color: white;
+    width: 70%;
 }
 .home_content_row {
     position: relative;
@@ -139,7 +167,33 @@
     background-color: white;
     margin: 0 1em;
 }
-
+.home_content_head {
+    position: relative;
+    display: block;
+    padding: 1em;
+}
+.home_content_title, .home_content_subtitle {
+    margin: 0;
+    margin-bottom: 1em;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.home_content_subtitle {
+    font-weight: 400;
+}
+.home_content_info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.home_content_title_info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 400;
+}
 
 /* BreadCrambs */
 .breads_container {
@@ -147,7 +201,8 @@
     display: flex;
 }
 .breads_element {
-    font-family: monospace;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16;
     margin: 0;
 }
 .breads_element:hover {
@@ -158,9 +213,8 @@
 /* SELECT COMPONENT */
 .select_custom__dropdown_container {
     text-align: left;
-    border: 1px solid #ccc;
+    border: 1px solid black;
     position: relative;
-    border-radius: 6px;
     cursor: pointer;
     width: -webkit-max-content;
     width: -moz-max-content;
@@ -185,7 +239,7 @@
     gap: 7px;
 }
 .select_custom__dropdown_container .select_dropdown_input .select_dropdown_selected_value_placeholder {
-    color: #82868b;
+    color: black;
 }
 .select_custom__dropdown_container .select_dropdown_tool svg {
     -webkit-transition: all 0.2s ease-in-out;

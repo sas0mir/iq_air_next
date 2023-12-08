@@ -7,9 +7,9 @@ export default function BreadCrumbs(props: any) {
     const pathElements = path ? path.split('/') : [];
 
     const handleClick = (index: number) => {
-        const folder = pathElements.slice(1, index + 1).join('/');
-        console.log('FOLDER->', folder);
-        action(folder)
+        const location = pathElements.slice(1, index + 1).join('/');
+        console.log('КРОШКИ ЛОКАЦИЯ->', location);
+        action(location)
     }
 
   return (
