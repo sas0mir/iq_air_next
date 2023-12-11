@@ -4,7 +4,7 @@ import { SessionProvider } from "next-auth/react";
 import type { Session } from "next-auth";
 //import type { AppProps } from "next/app";
 
-export default function Provider({children, session}: {
+export default function UserProvider({children, session}: {
     children: React.ReactNode,
     session?: Session
   }) {

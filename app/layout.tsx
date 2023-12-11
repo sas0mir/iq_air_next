@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import styles from './globals.module.css'
-import Provider from './lib/session_provider';
+import UserProvider from './lib/session_provider';
 import Navigation from './lib/navigation';
+import Providers from './lib/g_context';
 
 const inter = Inter({ subsets: ['latin', 'cyrillic'] })
 
@@ -19,12 +20,12 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <Provider>
-        <body className={styles.body_container}>
-          <Navigation />
-          {children}
-        </body>
-      </Provider>
+      <body className={styles.body_container}>
+          <Providers>
+            <Navigation />
+            {children}
+          </Providers>
+      </body>
     </html>
   )
 }

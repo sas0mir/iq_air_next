@@ -7,12 +7,13 @@ import { useSession } from "next-auth/react";
 import BreadCrumbs from "./lib/bread_crumbs";
 import { useEffect, useState } from "react";
 import Select from "./lib/select";
-import { get } from "lodash";
+import { get, isEqual } from "lodash";
 import { ILocation } from "./lib/constants";
 import LocationHeader from "./lib/location_header";
 import IndexVidget from "./lib/index_vidget";
 import MapBanner from "./lib/map_banner";
 import LocationReview from "./lib/location_review";
+import { globalContext } from "./lib/g_context";
 
 export default function Page({Component, pageProps}:AppProps) {
 
@@ -133,7 +134,18 @@ export default function Page({Component, pageProps}:AppProps) {
     }
 
     return (
-        <main className={styles.main}>
+      <globalContext.Consumer>
+        {(context: any) => {
+
+          console.log('CONTEXT->', context);
+          const gState = context.globalState;
+          const gLocation = gState.gLocation;
+          
+          if (location.city && gLocation.city !== location.city) {
+            context.setLocation(location);
+          }
+
+          return <main className={styles.main}>
           <header className={styles.header_container}>
             <BreadCrumbs path={`${location.country}/${location.state || 'Не выбран штат'}/${location.city || 'Не выбран город'}`} action={handleBreadRoute}/>
             <input type="button" value="Найти меня" onClick={findMe} className={styles.header_btn} />
@@ -156,13 +168,8 @@ export default function Page({Component, pageProps}:AppProps) {
               <LocationReview location={location} weather={weather} pollution={pollution} />
             </div>
           </div>
-            {/* {session?.user ? 
-            <Link href="/monitor">Back to weather monitor {session?.user.name}</Link> : 
-            <div>
-                <Link href="/register">Register</Link>
-                <Link href="/login">Login</Link>
-            </div>
-            } */}
         </main>
+        }}
+      </globalContext.Consumer>
     )
 }

@@ -1,5 +1,6 @@
 "use client"
 import styles from '../globals.module.css'
+import { globalContext } from './g_context';
 
 export default function BreadCrumbs(props: any) {
 
@@ -13,10 +14,16 @@ export default function BreadCrumbs(props: any) {
     }
 
   return (
-    <div className={styles.breads_container}>
-        {pathElements.length && pathElements.map((el: string, idx: number) => {
-            if (el) return <h4 key={idx} className={styles.breads_element} onClick={(e) => handleClick(idx)}>{`/${el}`}</h4>
-        })}
-    </div>
+    <globalContext.Consumer>
+      {(context: any) => {
+        return (
+          <div className={styles.breads_container}>
+              {pathElements.length && pathElements.map((el: string, idx: number) => {
+                  if (el) return <h4 key={idx} className={styles.breads_element} onClick={(e) => handleClick(idx)}>{`/${el}`}</h4>
+              })}
+          </div>
+        )
+      }}
+    </globalContext.Consumer>
   )
 }
