@@ -2,11 +2,17 @@
 import React from "react";
 import Link from "next/link";
 import styles from "../globals.module.css";
+import Image from "next/image";
 
 export default function Navigation() {
     return (
         <div className={styles.navigation_container}>
             <ul className={styles.navigation_list}>
+            <li className={styles.navigation_item}>
+                <Link className={styles.navigation_text} href="/">
+                  <Image src={'/ic-logo-iq-air-blue.svg'} alt="logo" width={70} height={40} />
+                </Link>
+              </li>
               <li className={styles.navigation_item}>
                 <Link className={styles.navigation_text} href="/">
                   <p className={styles.navigation_text}>Качество воздуха</p>

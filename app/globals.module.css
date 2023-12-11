@@ -1,13 +1,42 @@
+@font-face {
+    font-family: 'Roboto-Black';
+    src: url('../public/Roboto/Roboto-Black.ttf');
+}
+@font-face {
+    font-family: 'Roboto-Bold';
+    src: url('../public/Roboto/Roboto-Bold.ttf');
+}
+@font-face {
+    font-family: 'Roboto-Light';
+    src: url('../public/Roboto/Roboto-Light.ttf');
+}
+@font-face {
+    font-family: 'Roboto-Medium';
+    src: url('../public/Roboto/Roboto-Medium.ttf');
+}
+@font-face {
+    font-family: 'Roboto-Regular';
+    src: url('../public/Roboto/Roboto-Regular.ttf');
+}
+@font-face {
+    font-family: 'Roboto-Thin';
+    src: url('../public/Roboto/Roboto-Thin.ttf');
+}
+
 .body_container {
     margin: 0;
-    background-color: lightgrey;
+    background-color: white;
 }
 
 .main {
     display: block;
     min-height: 100vh;
+    font-family: "Roboto-Light";
 }
 /* COMPONENTS */
+.icon_item {
+    color: dodgerblue;
+}
 .icon_btn {
     background-color: white;
     border-radius: 50%;
@@ -17,6 +46,7 @@
     min-height: 30px;
     cursor: pointer;
     margin-left: 1em;
+    color: dodgerblue;
 }
 .icon_btn:hover {
     border-color: grey;
@@ -36,7 +66,7 @@
 }
 .auth_title {
     margin: 0 auto;
-    font-family: monospace;
+    font-family: 'Roboto-Light';
 }
 .auth_field {
     display: block;
@@ -44,14 +74,14 @@
     padding: 5px 10px;
 }
 .auth_label {
-    font-family: monospace;
+    font-family: 'Roboto-Regular';
     font-size: 10pt;
 }
 .auth_input {
     border: none;
     border-bottom: 1px solid green;
     padding: 5px;
-    font-family: monospace;
+    font-family: 'Roboto-Light';
     font-size: 10pt;
     color: green;
 }
@@ -64,7 +94,7 @@
     border: none;
     width: fit-content;
     background-color: inherit;
-    font-family: monospace;
+    font-family: 'Roboto-Light';
     font-size: 10pt;
     font-weight: bold;
     border-radius: 10px;
@@ -95,6 +125,7 @@
 }
 .navigation_item {
     list-style-type: none;
+    align-items: center;
 }
 .navigation_text:hover {
     color: grey;
@@ -102,7 +133,7 @@
 }
 .navigation_text {
     text-decoration: none;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Roboto-Light';
     font-size: 18;
     font-weight: 600;
     color: black;
@@ -147,8 +178,11 @@
     flex-direction: column;
     padding: 1em;
     background-color: white;
-    width: 30%;
+    width: 25%;
     margin-right: 1em;
+    -webkit-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+    box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
 }
 .home_content_column_right {
     position: relative;
@@ -156,7 +190,10 @@
     flex-direction: column;
     padding: 1em;
     background-color: white;
-    width: 70%;
+    width: 75%;
+    -webkit-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+    box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
 }
 .home_content_row {
     position: relative;
@@ -166,16 +203,22 @@
     padding: 1em;
     background-color: white;
     margin: 0 1em;
+    -webkit-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+    box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
 }
 .home_content_head {
     position: relative;
     display: block;
-    padding: 1em;
+    margin: 1em;
+    -webkit-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+    box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
 }
 .home_content_title, .home_content_subtitle {
     margin: 0;
     margin-bottom: 1em;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Roboto-Light';
 }
 .home_content_subtitle {
     font-weight: 400;
@@ -191,8 +234,11 @@
     justify-content: space-around;
     align-items: center;
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Roboto-Thin';
     font-weight: 400;
+}
+.home_content_title_info_bold {
+    font-family: 'Roboto-Regular';
 }
 
 /* BreadCrambs */
@@ -201,7 +247,7 @@
     display: flex;
 }
 .breads_element {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Roboto-Thin';
     font-size: 16;
     margin: 0;
 }
@@ -367,4 +413,115 @@
     -ms-flex-align: center;
     align-items: center;
     margin-left: 5px;
+}
+
+/* AQI VIDGET */
+.aqi_container_green {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #5dc962;
+    padding: 1em;
+}
+.aqi_container_yellow {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #d1cb52;
+    padding: 1em;
+}
+.aqi_container_red {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #d9574e;
+    padding: 1em;
+}
+.aqi_content_left {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+}
+.aqi_index_box_green {
+    padding: 5px 15px;
+    margin-right: 1em;
+    background-color: #1e9c05;
+}
+.aqi_index_box_yellow {
+    padding: 5px 15px;
+    margin-right: 1em;
+    background-color: #b7ba06;
+}
+.aqi_index_box_red {
+    padding: 5px 15px;
+    margin-right: 1em;
+    background-color: #c94030;
+}
+.aqi_index_box_top_text {
+    color: white;
+    font-size: 11pt;
+}
+.aqi_index_box_bottom_text {
+    color: white;
+    font-family: 'Roboto-Regular';
+    font-size: 24pt;
+    margin: 0;
+}
+.aqi_index_center {
+    padding: 5px;
+}
+.aqi_index_center_top_text {
+    font-size: 11pt;
+}
+.aqi_index_center_bottom_text {
+    font-family: 'Roboto-Regular';
+    font-size: 24pt;
+    margin: 0;
+}
+
+/* MAP BANNER */
+.map_banner_container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    background-image: url('/iqair-pollution-map-station-preview@1x.jpg');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    -webkit-transition:all 1s ease;
+    -moz-transition:all 1s ease;
+    -o-transition:all 1s ease;
+    transition:all 1s ease;
+    align-items: center;
+    padding: 1em;
+    min-height: 500px;
+}
+.map_banner_container:hover {
+    background-size: 120%;
+    cursor: pointer;
+}
+.map_banner_text_top {
+    color: dodgerblue;
+    font-size: 11pt;
+}
+.map_banner_text_center {
+    color: white;
+    font-size: 15pt;
+    font-family: 'Roboto-Bold';
+    font-weight: 500;
+}
+.map_banner_button {
+    border: 1px solid white;
+    padding: 5px 10px;
+    color: white;
+    font-size: 14pt;
+    font-family: 'Roboto-Regular';
 }

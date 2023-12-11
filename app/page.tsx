@@ -11,6 +11,8 @@ import { get } from "lodash";
 import { ILocation } from "./lib/constants";
 import LocationHeader from "./lib/location_header";
 import IndexVidget from "./lib/index_vidget";
+import MapBanner from "./lib/map_banner";
+import LocationReview from "./lib/location_review";
 
 export default function Page({Component, pageProps}:AppProps) {
 
@@ -147,10 +149,11 @@ export default function Page({Component, pageProps}:AppProps) {
           </div>
           <div className={styles.home_content}>
             <div className={styles.home_content_column_left}>
-              <h2>LEFT BANNER</h2>
+              <MapBanner />
             </div>
             <div className={styles.home_content_column_right}>
               <IndexVidget location={location} weather={weather} pollution={pollution} />
+              <LocationReview location={location} weather={weather} pollution={pollution} />
             </div>
           </div>
             {/* {session?.user ? 
