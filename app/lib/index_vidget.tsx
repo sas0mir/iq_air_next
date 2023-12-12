@@ -16,17 +16,17 @@ export default function IndexVidget(props: any) {
     }, [location])
 
     //just test aqi
-    const aqi = pollution ? pollution.aqicn : null;
-    const indexText = aqi >= 150 ? 'Отлично' : aqi >= 100 && aqi < 150 ? 'В Норме' : 'Вредно Для Уязвимых Групп';
-    const faceImage = aqi >= 150 ? 'ic-face-green.svg' : aqi >= 100 && aqi < 150 ? 'ic-face-yellow.svg' : 'ic-face-red.svg';
+    const aqi = pollution ? pollution.aqius : null;
+    const indexText = aqi >= 100 ? 'Вредно Для Уязвимых Групп' : aqi >= 50 && aqi < 100 ? 'В Норме' : 'Хорошо';
+    const faceImage = aqi >= 100 ? 'ic-face-red.svg' : aqi >= 50 && aqi < 100 ? 'ic-face-yellow.svg' : 'ic-face-green.svg';
 
   return (
     <globalContext.Consumer>
         {(context: any) => {
             return (
-                <div className={aqi >= 150 ? styles.aqi_container_green : aqi >= 100 && aqi < 150 ? styles.aqi_container_yellow : styles.aqi_container_red}>
+                <div className={aqi >= 100 ? styles.aqi_container_red : aqi >= 50 && aqi < 100 ? styles.aqi_container_yellow : styles.aqi_container_green}>
                     <div className={styles.aqi_content_left}>
-                        <div className={aqi >= 150 ? styles.aqi_index_box_green : aqi >= 100 && aqi < 150 ? styles.aqi_index_box_yellow :styles.aqi_index_box_red}>
+                        <div className={aqi >= 100 ? styles.aqi_index_box_red : aqi >= 50 && aqi < 100 ? styles.aqi_index_box_yellow :styles.aqi_index_box_green}>
                             <p className={styles.aqi_index_box_top_text}>AQI {location.country}</p>
                             <p className={styles.aqi_index_box_bottom_text}>{`${aqi}`}</p>
                         </div>

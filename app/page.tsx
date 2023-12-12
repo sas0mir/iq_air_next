@@ -14,6 +14,7 @@ import IndexVidget from "./lib/index_vidget";
 import MapBanner from "./lib/map_banner";
 import LocationReview from "./lib/location_review";
 import { globalContext } from "./lib/g_context";
+import AirForecast from "./lib/air_forecast";
 
 export default function Page({Component, pageProps}:AppProps) {
 
@@ -140,7 +141,7 @@ export default function Page({Component, pageProps}:AppProps) {
           console.log('CONTEXT->', context);
           const gState = context.globalState;
           const gLocation = gState.gLocation;
-          
+
           if (location.city && gLocation.city !== location.city) {
             context.setLocation(location);
           }
@@ -166,6 +167,7 @@ export default function Page({Component, pageProps}:AppProps) {
             <div className={styles.home_content_column_right}>
               <IndexVidget location={location} weather={weather} pollution={pollution} />
               <LocationReview location={location} weather={weather} pollution={pollution} />
+              <AirForecast location={location} forecasts={forecasts} />
             </div>
           </div>
         </main>

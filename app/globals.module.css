@@ -525,3 +525,47 @@
     font-size: 14pt;
     font-family: 'Roboto-Regular';
 }
+
+/* LOCATION REVIEW COMPONENT */
+.review_container {
+    position: relative;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+.review_review {
+
+}
+.review_title_blue {
+    color: dodgerblue;
+    font-family: 'Roboto-Regular';
+    font-size: 12pt;
+}
+.review_title {
+    font-size: 14pt;
+}
+.review_table {
+    width: 100%;
+    /* border: 1px solid #bababa; */
+    /* gap: 0; */
+    border-spacing: 0;
+}
+.review_table tr {
+    padding: 0;
+    margin: 0;
+    height: 40px;
+    border: 1px solid #e6e8eb;
+}
+.review_table th {
+    background-color: #e6e8eb;
+    height: 40px;
+}
+.review_table td {
+    padding-left: 1em;
+    border: 1px solid #e6e8eb;
+}
+.review_concentration {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: flex-end;
+}
