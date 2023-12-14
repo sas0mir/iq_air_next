@@ -12,9 +12,9 @@ export async function POST(request: NextRequest, response: NextApiResponse) {
         const data = await states.json();
         if(data.status === 'success') {
             return NextResponse.json(data)
-        } else throw new Error('STATES API ERROR');
-    } catch(err) {
+        } else throw new Error(data.data.message);
+    } catch(err: any) {
         console.error('API-STATES-ERROR->', err)
-        return NextResponse.json({success: false, error: err})
+        return NextResponse.json({success: false, error: err.toString()})
     }
 }

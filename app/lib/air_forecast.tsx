@@ -4,11 +4,12 @@ import styles from '../globals.module.css'
 import React, {useEffect} from 'react';
 import { globalContext } from './g_context';
 import Image from 'next/image';
+import { TestForecasts } from './constants';
 
 //прогноз
 export default function AirForecast(props: any) {
 
-    const {location, forecasts} = props;
+    const {location, forecasts = TestForecasts} = props;
 
     const table_head = [
         'День',
@@ -19,13 +20,16 @@ export default function AirForecast(props: any) {
     ]
 
     const forecastLevel = (fcast: any) => {
+        const aqi = fcast ? fcast.aqius : null;
+        const aqiText = aqi >= 100 ? 'Вредно Для Уязвимых Групп' : aqi >= 50 && aqi < 100 ? 'В Норме' : 'Хорошо';
+        const faceImage = aqi >= 100 ? 'ic-face-red.svg' : aqi >= 50 && aqi < 100 ? 'ic-face-yellow.svg' : 'ic-face-green.svg';
         const image_src = ''
         return (
-            <div className={styles.fcast_container}>
-                <p className={styles.fcast_left_text}></p>
+            <div className={styles.fcast_container} style={{backgroundColor: aqi >= 100 ? '#d9574e' : aqi >= 50 && aqi < 100 ? '#d1cb52' : '#5dc962'}}>
+                <p className={styles.fcast_left_text}>{aqiText}</p>
                 <div className={styles.fcast_right}>
-                    <p className={styles.fcast_right_text}></p>
-                    <Image src={image_src} alt={fcast.aqius} width={50} height={50}/>
+                    <p className={styles.fcast_right_text}>{`${aqi} ИКВ США`}</p>
+                    <Image src={`/${faceImage}`} alt={'face_image'} width={30} height={30}/>
                 </div>
             </div>
         )
@@ -42,7 +46,16 @@ export default function AirForecast(props: any) {
         "ws": 3, //wind speed (m/s)
         "wd": 313, //wind direction, as an angle of 360° (N=0, E=90, S=180, W=270)
         "ic": "10n" //weather icon code, see below for icon index
-      }
+    }
+
+    const units_example = {
+        "p2": "ugm3", //pm2.5
+        "p1": "ugm3", //pm10
+        "o3": "ppb", //Ozone O3
+        "n2": "ppb", //Nitrogen dioxide NO2 
+        "s2": "ppb", //Sulfur dioxide SO2 
+        "co": "ppm" //Carbon monoxide CO 
+    }
 
   return (
     <globalContext.Consumer>
@@ -50,9 +63,9 @@ export default function AirForecast(props: any) {
             return (
                 <div className={styles.forecast_container}>
                     <p className={styles.forecast_title_blue}>ПРОГНОЗ</p>
-                    <p className={styles.forecast_title}>Прогноз качества воздуха (AQI) в районе {location.city}{location.state}{location.country}?</p>
+                    <p className={styles.forecast_title}>Прогноз качества воздуха (AQI) в районе {location.city} {location.state} {location.country}? (данные тестовые, апи без forecasts)</p>
                     <table className={styles.forecast_table}>
-                        <tr>
+                        <tr className={styles.forecast_table_head}>
                             {table_head.map((el, idx) => {
                                 return <th key={idx}>{el}</th>
                             })}
@@ -63,9 +76,14 @@ export default function AirForecast(props: any) {
                                 <td>{forecastLevel(fcast)}</td>
                                 <td><Image src={`/${fcast.ic}.png`} alt={fcast.ic} width={50} height={50}/></td>
                                 <td>{`${fcast.tp}° ${fcast.tp_min}°`}</td>
+                                <td>
+                                    <Image src={`/ic-wind-direction-solid.svg`} style={{transform: `rotate(${fcast.wd}deg)`}} alt={fcast.wd} width={20} height={20}/>
+                                    {fcast.ws * 3.6} km/h
+                                </td>
                             </tr>
                         }) : null}
                     </table>
+                    <p className={styles.forecast_text_bottom}>Хотите получать прогноз каждый час? <a href='/'>Загрузить приложение</a></p>
                 </div>
             )
         }}

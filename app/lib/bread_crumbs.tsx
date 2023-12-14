@@ -19,7 +19,7 @@ export default function BreadCrumbs(props: any) {
         return (
           <div className={styles.breads_container}>
               {pathElements.length && pathElements.map((el: string, idx: number) => {
-                  if (el) return <h4 key={idx} className={styles.breads_element} onClick={(e) => handleClick(idx)}>{`/${el}`}</h4>
+                  if (el) return <h4 key={idx} className={styles.breads_element} onClick={(e) => handleClick(idx)}>{idx ? ` >  ${el}  `: `${el}  `}</h4>
               })}
           </div>
         )

@@ -12,9 +12,9 @@ export async function GET(request: NextApiRequest, response: NextApiResponse) {
         const data = await countries.json();
         if(data.status === 'success') {
             return NextResponse.json(data)
-        } else throw new Error('COUNTRIES API ERROR');
-    } catch(err) {
+        } else throw new Error(data.data.message);
+    } catch(err: any) {
         console.error('API-COUNTRIES-ERROR->', err)
-        return NextResponse.json({success: false, error: err})
+        return NextResponse.json({success: false, error: err.toString()})
     }
 }

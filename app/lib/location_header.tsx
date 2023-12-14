@@ -4,6 +4,7 @@ import styles from '../globals.module.css'
 import React, {useEffect} from 'react';
 import { AiOutlineUser, AiOutlineHeart, AiOutlineShareAlt } from "react-icons/ai";
 import { globalContext } from './g_context';
+import Image from 'next/image';
 
 export default function LocationHeader(props: any) {
 
@@ -34,7 +35,9 @@ export default function LocationHeader(props: any) {
                             <h4 className={styles.home_content_title_info}><span className={styles.home_content_title_info_bold}>Последнее обновление:</span> {moment(weather.ts).format('HH:mm MM/DD/YYYY')}</h4>
                             <div className={styles.home_content_title_info}>
                                 <h4 className={styles.home_content_title_info}>{weather.pr} человек(а) подписаны на эту станцию</h4>
-                                {Number(weather.pr) >= 1000 ? [1,2,3].map(n => <AiOutlineUser key={n} className={styles.icon_item}/>) : weather.pr >500 && weather.pr < 1000 ? [1,2].map(n => <AiOutlineUser key={n} className={styles.icon_item}/>): <AiOutlineUser className={styles.icon_item}/> }
+                                {Number(weather.pr) >= 1000 ? [1,2,3].map(n => <Image src={'/ic-person.png'} alt='person_icon' width={25} height={25} key={n} />) :
+                                weather.pr >500 && weather.pr < 1000 ? [1,2].map(n => <Image src={'/ic-person.png'} alt='person_icon' width={25} height={25} key={n} />) :
+                                <Image src={'/ic-person.png'} alt='person_icon' width={25} height={25} /> }
                                 <button className={styles.icon_btn} onClick={subscribe}><AiOutlineHeart/></button>
                                 <button className={styles.icon_btn} onClick={share}><AiOutlineShareAlt/></button>
                             </div>

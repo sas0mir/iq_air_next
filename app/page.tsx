@@ -15,6 +15,8 @@ import MapBanner from "./lib/map_banner";
 import LocationReview from "./lib/location_review";
 import { globalContext } from "./lib/g_context";
 import AirForecast from "./lib/air_forecast";
+import ProducerData from "./lib/producer_data";
+import WeatherBanner from "./lib/weather_banner";
 
 export default function Page({Component, pageProps}:AppProps) {
 
@@ -64,7 +66,7 @@ export default function Page({Component, pageProps}:AppProps) {
         }
 
         await fetch(`/api/${api_name}`, fetchOptions).then(res => res.json()).then((data) => {
-          console.log('FETCH-DATA->', api_name, data.data);
+          console.log('ERRRRRRRR->', data);
           if (data.status === 'success') {
             switch (api_name) {
               case 'countries':
@@ -80,7 +82,7 @@ export default function Page({Component, pageProps}:AppProps) {
                 setStations(data.data);
                 break;
             }
-          }
+          } else alert(`${api_name}API ERROR ${data.error}`)
         })
       } catch(err) {
         console.error('GET-DATA-ERROR->', err)
@@ -98,6 +100,7 @@ export default function Page({Component, pageProps}:AppProps) {
         }).then((res) => {
           return res.json()
         }).then((data) => {
+          console.log('API-ANSWER->', data);
           if(data.status === 'success') {
             const new_location = {
               country: data.data.country,
@@ -111,7 +114,7 @@ export default function Page({Component, pageProps}:AppProps) {
             setHistory(data.data.history);
             setWeather(get(data.data, ['current', 'weather'])),
             setPollution(get(data.data, ['current', 'pollution']));
-          }
+          } else alert(`FIND ME ERROR ${data.error}`)
         })
       } catch(err) {
         alert(`NEAREST-STATION-API-ERROR->${err}`)
@@ -138,7 +141,7 @@ export default function Page({Component, pageProps}:AppProps) {
       <globalContext.Consumer>
         {(context: any) => {
 
-          console.log('CONTEXT->', context);
+          console.log('MAIN-CONTEXT->', context, '\nMAIN->', forecasts);
           const gState = context.globalState;
           const gLocation = gState.gLocation;
 
@@ -163,6 +166,8 @@ export default function Page({Component, pageProps}:AppProps) {
           <div className={styles.home_content}>
             <div className={styles.home_content_column_left}>
               <MapBanner />
+              <WeatherBanner location={location} weather={weather} />
+              <ProducerData location={location}/>
             </div>
             <div className={styles.home_content_column_right}>
               <IndexVidget location={location} weather={weather} pollution={pollution} />
